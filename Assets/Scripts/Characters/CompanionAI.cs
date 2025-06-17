@@ -10,12 +10,15 @@ public class CompanionAI : MonoBehaviour
 {
     public Transform player;
     public float followDistance = 2f;
+    public CompanionMemory memory;
 
     private UnityEngine.AI.NavMeshAgent agent;
 
     private void Awake()
     {
         agent = GetComponent<UnityEngine.AI.NavMeshAgent>();
+        if (memory == null)
+            memory = GetComponent<CompanionMemory>();
     }
 
     private void Update()
@@ -31,5 +34,20 @@ public class CompanionAI : MonoBehaviour
         {
             agent.ResetPath();
         }
+    }
+
+    public void ReactToEvent(string eventType)
+    {
+        memory.AddEvent(eventType);
+    }
+
+    public void CommentOnQuest(string questId)
+    {
+        Debug.Log($"Companion comments on quest {questId}");
+    }
+
+    public void AdjustDisposition(string trait, float amount)
+    {
+        memory.AdjustDisposition(trait, amount);
     }
 }

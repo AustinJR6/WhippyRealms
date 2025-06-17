@@ -1,0 +1,22 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &100000
+GameObject:
+  m_Name: MyrrhfenVillage
+  m_IsActive: 1
+--- !u!224 &100001
+MonoBehaviour:
+  m_GameObject: {fileID: 100000}
+  m_Script: {fileID: 11500000, guid: 0000000000000000e000000000000000, type: 3}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_ScriptAsset: {fileID: 0}
+  m_Name: MyrrhfenScenePlaceholder
+  m_EditorClassIdentifier: 
+  m_SpawnPoint: {x:0, y:0, z:0}
+  m_NPCSpawner: {x:10, y:0, z:0}
+  m_DungeonPortal: {x:20, y:0, z:0}
+# This is a placeholder Unity scene file. Create a real scene in Unity with
+# a Player spawn point, an NPC spawner and a portal to the dungeon.
