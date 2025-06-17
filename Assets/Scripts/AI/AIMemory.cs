@@ -2,14 +2,14 @@ using UnityEngine;
 using System.Collections.Generic;
 
 /// <summary>
-/// Stores key events and decisions so AI characters can remember the player's
-/// actions over time.
+/// Base class for AI memory. Stores key events and decisions so AI characters
+/// can remember the player's actions over time.
 /// </summary>
 public class AIMemory : MonoBehaviour
 {
-    private readonly List<string> memoryLog = new List<string>();
+    protected readonly List<string> memoryLog = new List<string>();
 
-    public void Remember(string entry)
+    protected void Remember(string entry)
     {
         memoryLog.Add(entry);
         if (memoryLog.Count > 100)
