@@ -1,0 +1,4 @@
+openai
+coqui-ai
+numpy
+flask
