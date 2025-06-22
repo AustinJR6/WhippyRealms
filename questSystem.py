@@ -21,10 +21,12 @@ def _save_json(filename, data):
 class QuestManager:
     """Handles loading, tracking and completing quests."""
 
-    def __init__(self, player_state):
+    def __init__(self, player_state, rep_mgr, mount_mgr, boon_mgr):
         self.state = player_state
+        self.rep_mgr = rep_mgr
+        self.mount_mgr = mount_mgr
+        self.boon_mgr = boon_mgr
         self.quests_db = {q['id']: q for q in _load_json('quests.json', [])}
-        self.reputation = _load_json('reputation.json', {})
 
     # ---- Quest Acquisition ----
     def accept_quest(self, quest_id):
@@ -62,10 +64,12 @@ class QuestManager:
         self.state['xp'] = self.state.get('xp', 0) + rewards.get('xp', 0)
         self.state['inventory']['items'].extend(rewards.get('items', []))
         for faction, val in rewards.get('reputation', {}).items():
-            self.reputation[faction] = self.reputation.get(faction, 0) + val
+            self.rep_mgr.add_reputation(faction, val)
+        self.mount_mgr.unlock_from_quest(quest.get('id'), self.rep_mgr)
+        for boon in rewards.get('boons', []):
+            self.boon_mgr.activate(boon)
         self.state['completedQuests'].append(quest)
         self.state['activeQuests'].remove(quest)
-        _save_json('reputation.json', self.reputation)
 
     # ---- Dev Helpers ----
     def quest_log(self):

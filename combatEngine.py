@@ -3,6 +3,8 @@ import random
 from copy import deepcopy
 
 from statusTracker import apply_effects, tick_cooldowns
+from boonSystem import BoonSystem
+from mountManager import MountManager
 
 # elemental modifiers simple matrix
 ELEMENT_MATRIX = {
@@ -33,8 +35,10 @@ def elemental_multiplier(attacker_el, defender_el):
     return ELEMENT_MATRIX.get((attacker_el, defender_el), 1.0)
 
 class CombatEngine:
-    def __init__(self, skills_db):
+    def __init__(self, skills_db, boon_system=None, mount_manager=None):
         self.skills_db = skills_db
+        self.boon_system = boon_system
+        self.mount_manager = mount_manager
 
     def combat(self, player_data, enemy_data, choose_skill_fn=None):
         player = Combatant(player_data, self.skills_db)
@@ -47,8 +51,13 @@ class CombatEngine:
             # apply ongoing effects
             apply_effects(player, log)
             apply_effects(enemy, log)
+            if self.mount_manager:
+                self.mount_manager.apply_combat_effect(player, log)
             if player.hp <= 0 or enemy.hp <= 0:
-                break
+                if self.boon_system and player.hp <= 0:
+                    self.boon_system.trigger('onDeath', player, enemy, log)
+                if player.hp <= 0 or enemy.hp <= 0:
+                    break
             # player turn
             if choose_skill_fn:
                 chosen = choose_skill_fn(player, enemy)
@@ -79,6 +88,13 @@ class CombatEngine:
                 dmg = enemy.attack
                 player.hp -= dmg
                 log.append(f"{enemy.name} attacks for {dmg} dmg")
+            if self.boon_system:
+                self.boon_system.trigger('onHit', player, enemy, log)
+            if player.hp <= 0:
+                if self.boon_system:
+                    self.boon_system.trigger('onDeath', player, enemy, log)
+            if player.hp <= 0:
+                break
         result = player.hp > 0
         return result, log, player, enemy
 

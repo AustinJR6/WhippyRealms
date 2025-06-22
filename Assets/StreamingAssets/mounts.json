@@ -1,0 +1,14 @@
+[
+  {
+    "id": "gladehart",
+    "name": "Gladehart",
+    "type": "support",
+    "speed": 15,
+    "combatEffect": "Heals nearby allies for 5 HP/round",
+    "requirements": {
+      "region": "Verdancia",
+      "reputation": 20,
+      "quest": "gladehart_bonding"
+    }
+  }
+]

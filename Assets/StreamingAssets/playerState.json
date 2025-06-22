@@ -26,5 +26,10 @@
   "activeQuests": [],
   "completedQuests": [],
   "activeEffects": [],
-  "cooldowns": {}
+  "cooldowns": {},
+  "activeBoons": [],
+  "ownedMounts": [],
+  "activeMount": null,
+  "unlockedPerks": [],
+  "boonUses": {}
 }
