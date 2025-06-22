@@ -15,7 +15,8 @@
       "wonderType": "goldenTemple",
       "terrainFeatures": ["rivers", "farmlands"],
       "tag": "low",
-      "levelZone": 5
+      "levelZone": 5,
+      "prefabs": ["CityCube", "ShrineCube", "WonderCube"]
     },
     {
       "name": "Verdancia",
@@ -32,7 +33,8 @@
       "wonderType": "everbloom",
       "terrainFeatures": ["ancient trees", "fae ruins"],
       "tag": "low",
-      "levelZone": 5
+      "levelZone": 5,
+      "prefabs": ["GroveCube", "ShrineCube", "WonderCube"]
     },
     {
       "name": "Durndara",
@@ -49,7 +51,8 @@
       "wonderType": "volcanoForge",
       "terrainFeatures": ["volcano", "caves"],
       "tag": "mid",
-      "levelZone": 15
+      "levelZone": 15,
+      "prefabs": ["ForgeCube", "ShrineCube", "WonderCube"]
     },
     {
       "name": "Selenora",
@@ -66,7 +69,8 @@
       "wonderType": "skySpire",
       "terrainFeatures": ["moon temples", "astral trees"],
       "tag": "mid",
-      "levelZone": 15
+      "levelZone": 15,
+      "prefabs": ["AstralCube", "ShrineCube", "WonderCube"]
     },
     {
       "name": "Tharnor",
@@ -83,7 +87,8 @@
       "wonderType": "sandPyramid",
       "terrainFeatures": ["sandstorm", "ruins"],
       "tag": "high",
-      "levelZone": 25
+      "levelZone": 25,
+      "prefabs": ["RuinedCube", "ShrineCube", "WonderCube"]
     },
     {
       "name": "Vokaria",
@@ -100,7 +105,8 @@
       "wonderType": "seaMonolith",
       "terrainFeatures": ["flooded ruins", "storm altars"],
       "tag": "high",
-      "levelZone": 25
+      "levelZone": 25,
+      "prefabs": ["MarshCube", "ShrineCube", "WonderCube"]
     }
   ]
 }

@@ -17,6 +17,7 @@ public class BiomeCreatureSpawner : MonoBehaviour
     public float spawnInterval = 10f;
     public int maxSpawned = 5;
     public float respawnDelay = 5f;
+    public float leashDistance = 30f;
     public List<Transform> wonderPoints = new List<Transform>();
 
     private float timer;
@@ -44,6 +45,9 @@ public class BiomeCreatureSpawner : MonoBehaviour
 
         Vector3 pos = GetSpawnPosition(prefab);
         var obj = Instantiate(prefab, pos, Quaternion.identity, transform);
+        var leash = obj.AddComponent<SpawnLeash>();
+        leash.center = transform;
+        leash.maxDistance = leashDistance;
         spawned.Add(obj);
     }
 
@@ -73,6 +77,16 @@ public class BiomeCreatureSpawner : MonoBehaviour
 
         basePos += new Vector3(Random.Range(-spawnRadius, spawnRadius), 0f,
                                Random.Range(-spawnRadius, spawnRadius));
+
+        if (Terrain.activeTerrain != null)
+        {
+            Vector3 local = basePos - Terrain.activeTerrain.transform.position;
+            float nx = local.x / Terrain.activeTerrain.terrainData.size.x;
+            float nz = local.z / Terrain.activeTerrain.terrainData.size.z;
+            float h = Terrain.activeTerrain.terrainData.GetInterpolatedHeight(nx, nz);
+            basePos.y = h + Terrain.activeTerrain.transform.position.y;
+        }
+
         return basePos;
     }
 }

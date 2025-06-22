@@ -19,6 +19,7 @@ public class RegionData
     public string cityType;
     public string shrineType;
     public string wonderType;
+    public string[] prefabs;
     public string[] terrainFeatures;
     public string tag;
     public int levelZone;
