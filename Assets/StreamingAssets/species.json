@@ -1,0 +1,6 @@
+{
+  "species": [
+    {"name": "Human", "baseStats": {"health": 20, "attack": 2, "magic": 1, "armor": 0}},
+    {"name": "Elf", "baseStats": {"health": 18, "attack": 1, "magic": 3, "armor": 0}}
+  ]
+}

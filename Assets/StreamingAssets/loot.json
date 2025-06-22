@@ -1,0 +1,12 @@
+{
+  "lootTables": {
+    "Thornhopper": [
+      {"item": "Thorn Shell", "rarity": "common"},
+      {"item": "Spore Dust", "rarity": "uncommon"}
+    ],
+    "Sporeling": [
+      {"item": "Spore Dust", "rarity": "common"},
+      {"item": "Shroom Cap", "rarity": "uncommon"}
+    ]
+  }
+}
