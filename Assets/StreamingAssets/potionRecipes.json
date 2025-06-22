@@ -1,0 +1,10 @@
+[
+  {
+    "id": "stormsight",
+    "name": "Draught of Stormsight",
+    "ingredients": ["stormpetal", "skyroot", "flashwater"],
+    "effect": "Reveal hidden enemies and gain lightning resistance",
+    "duration": 3,
+    "type": "consumable"
+  }
+]
