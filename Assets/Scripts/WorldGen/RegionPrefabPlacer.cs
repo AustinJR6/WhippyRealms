@@ -14,10 +14,7 @@ public class RegionPrefabPlacer : MonoBehaviour
     [Header("Anchors")] public List<Transform> anchors = new List<Transform>();
 
     [Header("Prefab Libraries")]
-    public List<PrefabEntry> cityPrefabs = new List<PrefabEntry>();
-    public List<PrefabEntry> shrinePrefabs = new List<PrefabEntry>();
-    public List<PrefabEntry> wonderPrefabs = new List<PrefabEntry>();
-    public List<PrefabEntry> ruinPrefabs = new List<PrefabEntry>();
+    public List<PrefabEntry> prefabLibrary = new List<PrefabEntry>();
 
     private readonly List<GameObject> spawned = new List<GameObject>();
 
@@ -48,25 +45,36 @@ public class RegionPrefabPlacer : MonoBehaviour
         if (region == null) return;
 
         ClearPrefabs();
-        SpawnFromTable(cityPrefabs, region.cityType, 0);
-        SpawnFromTable(shrinePrefabs, region.shrineType, 1, true);
-        SpawnFromTable(wonderPrefabs, region.wonderType, 2);
-        SpawnFromTable(ruinPrefabs, "default", 3);
+        if (region.prefabs != null)
+        {
+            for (int i = 0; i < region.prefabs.Length; i++)
+            {
+                SpawnByName(region.prefabs[i], i);
+            }
+        }
     }
 
-    private void SpawnFromTable(List<PrefabEntry> table, string key, int seed, bool alignToTerrain = false)
+    private void SpawnByName(string prefabName, int seed)
     {
-        if (table == null || table.Count == 0) return;
-        var entry = table.Find(p => p.key == key);
-        if (entry == null) entry = table[0];
-        var pos = anchors.Count > seed ? anchors[seed].position : SamplePosition(seed);
-        var obj = Instantiate(entry.prefab, pos, Quaternion.identity, transform);
-        if (alignToTerrain && Terrain.activeTerrain != null)
+        var entry = prefabLibrary.Find(p => p.key == prefabName);
+        GameObject prefab = null;
+        float scale = 1f;
+        if (entry != null)
         {
-            var normal = Terrain.activeTerrain.terrainData.GetInterpolatedNormal(pos.x, pos.z);
-            obj.transform.rotation = Quaternion.LookRotation(Vector3.ProjectOnPlane(obj.transform.forward, normal), normal);
+            prefab = entry.prefab;
+            scale = entry.scale > 0 ? entry.scale : 1f;
         }
-        if (entry.scale > 0f) obj.transform.localScale *= entry.scale;
+        if (prefab == null)
+            prefab = Resources.Load<GameObject>(prefabName);
+        if (prefab == null)
+        {
+            Debug.LogWarning($"Prefab {prefabName} not found");
+            return;
+        }
+
+        Vector3 pos = anchors.Count > seed ? anchors[seed].position : SamplePosition(seed);
+        var obj = Instantiate(prefab, pos, Quaternion.identity, transform);
+        obj.transform.localScale *= scale;
         spawned.Add(obj);
     }
 

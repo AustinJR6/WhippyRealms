@@ -62,9 +62,21 @@ public class RegionTerrainManager : MonoBehaviour
 
         float scale = 5f;
         float amp = 0.1f;
-        if (region.elevationType == "mountains") amp = 0.3f;
-        else if (region.elevationType == "plains") amp = 0.05f;
-        else if (region.elevationType == "desert") amp = 0.08f;
+        if (region.elevationType == "mountains")
+        {
+            amp = 0.3f;
+            scale = 8f;
+        }
+        else if (region.elevationType == "plains")
+        {
+            amp = 0.05f;
+            scale = 3f;
+        }
+        else if (region.elevationType == "desert")
+        {
+            amp = 0.08f;
+            scale = 4f;
+        }
 
         for (int x = 0; x < width; x++)
         {
@@ -88,11 +100,11 @@ public class RegionTerrainManager : MonoBehaviour
         float[,,] maps = new float[w, h, data.alphamapLayers];
 
         int textureIndex = 0; // default grass
-        if (region.climateType == "arid")
+        if (region.biomeType == "desert")
             textureIndex = 1; // sand
-        else if (region.climateType == "cold")
+        else if (region.biomeType == "tundra" || region.climateType == "cold")
             textureIndex = 2; // snow
-        else if (region.climateType == "lava")
+        else if (region.biomeType == "volcanic" || region.climateType == "lava")
             textureIndex = 3; // lava rock
 
         for (int y = 0; y < h; y++)
@@ -133,6 +145,10 @@ public class RegionTerrainManager : MonoBehaviour
         data.treeInstances = new TreeInstance[0];
         data.SetDetailLayer(0, 0, 0, new int[data.detailWidth, data.detailHeight]);
 
+        if (fogParticles != null) fogParticles.gameObject.SetActive(false);
+        if (rainParticles != null) rainParticles.gameObject.SetActive(false);
+        if (ashParticles != null) ashParticles.gameObject.SetActive(false);
+
         foreach (var obj in spawnedObjects)
             if (obj != null)
                 Destroy(obj);
@@ -145,14 +161,26 @@ public class RegionTerrainManager : MonoBehaviour
     /// </summary>
     private void PopulateVegetation(RegionData region)
     {
-        // Placeholder: instantiate prefabs or place trees based on biomeType.
-        // For demo purposes we just spawn a simple primitive as an example.
+        int count = 10;
         if (region.biomeType == "forest")
+            count = 20;
+        else if (region.biomeType == "desert")
+            count = 5;
+
+        for (int i = 0; i < count; i++)
         {
-            var obj = GameObject.CreatePrimitive(PrimitiveType.Cube);
-            obj.transform.position = terrain.transform.position + Vector3.up;
-            obj.transform.SetParent(transform);
-            spawnedObjects.Add(obj);
+            Vector3 pos = new Vector3(Random.value, 0, Random.value);
+            float height = terrain.terrainData.GetInterpolatedHeight(pos.x, pos.z);
+            Vector3 worldPos = new Vector3(pos.x * terrain.terrainData.size.x,
+                                           height,
+                                           pos.z * terrain.terrainData.size.z);
+            worldPos += terrain.transform.position;
+
+            GameObject tree = GameObject.CreatePrimitive(PrimitiveType.Cylinder);
+            tree.transform.position = worldPos;
+            tree.transform.localScale = new Vector3(1, 4, 1);
+            tree.transform.SetParent(transform);
+            spawnedObjects.Add(tree);
         }
     }
 }
