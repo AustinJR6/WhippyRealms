@@ -8,6 +8,7 @@ using System.Collections.Generic;
 public class DialogueManager : MonoBehaviour
 {
     public Text logText;
+    public LogManager logManager;
 
     private Dictionary<string, DialogueTree> trees = new Dictionary<string, DialogueTree>();
 
@@ -38,6 +39,12 @@ public class DialogueManager : MonoBehaviour
 
     private void Append(string msg)
     {
+        if (logManager != null)
+        {
+            logManager.Log(msg);
+            return;
+        }
+
         if (logText != null)
             logText.text += msg + "\n";
         else

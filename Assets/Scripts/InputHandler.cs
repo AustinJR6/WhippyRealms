@@ -9,6 +9,7 @@ public class InputHandler : MonoBehaviour
 {
     public InputField inputField;
     public GameManager gameManager;
+    public UIManager uiManager;
 
     private void Start()
     {
@@ -69,6 +70,8 @@ public class InputHandler : MonoBehaviour
         {
             gameManager.zoneManager?.ShowStats();
         }
+
+        uiManager?.UpdateHUD(gameManager.playerState);
     }
 
     private string ExtractArg(string cmd)

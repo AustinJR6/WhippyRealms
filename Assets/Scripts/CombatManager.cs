@@ -7,6 +7,7 @@ using UnityEngine.UI;
 public class CombatManager : MonoBehaviour
 {
     public Text logText;
+    public LogManager logManager;
     private PlayerState player;
 
     public void Initialize(PlayerState state)
@@ -21,6 +22,12 @@ public class CombatManager : MonoBehaviour
 
     private void Append(string msg)
     {
+        if (logManager != null)
+        {
+            logManager.Log(msg);
+            return;
+        }
+
         if (logText != null)
             logText.text += msg + "\n";
         else

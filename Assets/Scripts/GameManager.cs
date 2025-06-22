@@ -11,6 +11,8 @@ public class GameManager : MonoBehaviour
     public InventoryManager inventoryManager;
     public NPCManager npcManager;
     public AICompanion aiCompanion;
+    public LogManager logManager;
+    public UIManager uiManager;
 
     // Loaded data
     public PlayerState playerState;
@@ -29,15 +31,35 @@ public class GameManager : MonoBehaviour
         zoneDb = JsonLoader.LoadJson<ZoneDatabase>("zones.json");
 
         if (dialogueManager != null)
+        {
+            dialogueManager.logManager = logManager;
             dialogueManager.Initialize(dialogueDb);
+        }
         if (zoneManager != null)
+        {
+            zoneManager.logManager = logManager;
             zoneManager.Initialize(zoneDb, playerState);
+        }
+        if (combatManager != null)
+        {
+            combatManager.logManager = logManager;
+            combatManager.Initialize(playerState);
+        }
+        if (inventoryManager != null)
+        {
+            inventoryManager.logManager = logManager;
+            inventoryManager.Initialize(playerState);
+        }
         if (npcManager != null)
         {
             npcManager.aiCompanion = aiCompanion;
             npcManager.dialogueManager = dialogueManager;
             npcManager.LoadNPCs();
         }
+
+        zoneManager?.TravelTo(playerState.zone);
+        logManager?.Log($"Welcome to {playerState.zone}.");
+        uiManager?.UpdateHUD(playerState);
     }
 }
 
