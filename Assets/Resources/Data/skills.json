@@ -1,0 +1,6 @@
+{
+  "skills": [
+    { "name": "Root Snare", "damage": 3 },
+    { "name": "Healing Pulse", "heal": 5 }
+  ]
+}

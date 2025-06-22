@@ -1,0 +1,12 @@
+{
+  "dialogueTrees": [
+    {
+      "id": "treovar_intro",
+      "speaker": "Elder Treovar",
+      "lines": [
+        { "text": "Welcome to the grove, traveler." },
+        { "text": "May the roots guide you." }
+      ]
+    }
+  ]
+}
