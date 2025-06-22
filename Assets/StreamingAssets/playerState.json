@@ -31,5 +31,7 @@
   "ownedMounts": [],
   "activeMount": null,
   "unlockedPerks": [],
-  "boonUses": {}
+  "boonUses": {},
+  "craftingXP": 0,
+  "craftingLevel": 1
 }

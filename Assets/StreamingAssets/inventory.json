@@ -1,4 +1,6 @@
 {
   "gold": 0,
-  "items": []
+  "materials": {},
+  "consumables": [],
+  "craftedItems": []
 }
