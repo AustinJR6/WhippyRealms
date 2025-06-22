@@ -1,4 +1,5 @@
 using UnityEngine;
+using System.Collections.Generic;
 
 /// <summary>
 /// Generates and configures a Unity Terrain using data loaded from RegionManager.
@@ -15,6 +16,7 @@ public class RegionTerrainManager : MonoBehaviour
     public ParticleSystem ashParticles;
 
     private Terrain terrain;
+    private List<GameObject> spawnedObjects = new List<GameObject>();
 
     private void Awake()
     {
@@ -44,8 +46,10 @@ public class RegionTerrainManager : MonoBehaviour
             return;
         }
 
+        ClearRegion();
         GenerateHeights(region);
         PaintTerrain(region);
+        PopulateVegetation(region);
         SpawnWeather(region);
     }
 
@@ -117,5 +121,38 @@ public class RegionTerrainManager : MonoBehaviour
             fogParticles.gameObject.SetActive(true);
         else if (region.climateType == "lava" && ashParticles != null)
             ashParticles.gameObject.SetActive(true);
+    }
+
+    /// <summary>
+    /// Remove vegetation and reset heights so terrain can be regenerated.
+    /// </summary>
+    public void ClearRegion()
+    {
+        var data = terrain.terrainData;
+        data.SetHeights(0, 0, new float[data.heightmapResolution, data.heightmapResolution]);
+        data.treeInstances = new TreeInstance[0];
+        data.SetDetailLayer(0, 0, 0, new int[data.detailWidth, data.detailHeight]);
+
+        foreach (var obj in spawnedObjects)
+            if (obj != null)
+                Destroy(obj);
+        spawnedObjects.Clear();
+    }
+
+    /// <summary>
+    /// Example vegetation spawning based on biome type. This can be extended
+    /// with rules for trees, grass and effects.
+    /// </summary>
+    private void PopulateVegetation(RegionData region)
+    {
+        // Placeholder: instantiate prefabs or place trees based on biomeType.
+        // For demo purposes we just spawn a simple primitive as an example.
+        if (region.biomeType == "forest")
+        {
+            var obj = GameObject.CreatePrimitive(PrimitiveType.Cube);
+            obj.transform.position = terrain.transform.position + Vector3.up;
+            obj.transform.SetParent(transform);
+            spawnedObjects.Add(obj);
+        }
     }
 }
