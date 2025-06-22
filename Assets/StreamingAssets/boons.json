@@ -1,5 +1,20 @@
-{
-  "boons": [
-    {"name": "Thornsoul", "effect": "Reflect 1 damage back"}
-  ]
-}
+[
+  {
+    "id": "verdant_resurrection",
+    "name": "Verdant Resurrection",
+    "type": "major",
+    "god": "Myrielle",
+    "effect": "Revive player once per day with 50% HP.",
+    "trigger": "onDeath",
+    "reputationRequirement": { "Myrielle": 20 }
+  },
+  {
+    "id": "thornsoul",
+    "name": "Thornsoul",
+    "type": "minor",
+    "god": "Myrielle",
+    "effect": "Reflect 1 damage back",
+    "trigger": "onHit",
+    "reputationRequirement": { "Myrielle": 5 }
+  }
+]

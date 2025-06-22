@@ -4,6 +4,9 @@ import random
 from pathlib import Path
 from combatEngine import CombatEngine
 from questSystem import QuestManager
+from boonSystem import BoonSystem
+from mountManager import MountManager
+from reputationManager import ReputationManager
 
 DATA_DIR = Path('Assets/StreamingAssets')
 
@@ -30,17 +33,26 @@ class Game:
         self.state_path = DATA_DIR / 'playerState.json'
         self.state = load_json('playerState.json')
         self.stats = self.state['stats']
-        self.engine = CombatEngine(self.skills)
-        self.quest_mgr = QuestManager(self.state)
+        self.boons = BoonSystem(self.state)
+        self.mounts = MountManager(self.state)
+        self.reputation = ReputationManager(self.state)
+        self.engine = CombatEngine(self.skills, self.boons, self.mounts)
+        self.quest_mgr = QuestManager(self.state, self.reputation, self.mounts, self.boons)
 
     # ----- Save/Load -----
     def save(self):
         save_json('playerState.json', self.state)
+        self.reputation._save()
         print('Game saved.')
 
     def load(self):
         self.state = load_json('playerState.json')
         self.stats = self.state['stats']
+        self.boons = BoonSystem(self.state)
+        self.mounts = MountManager(self.state)
+        self.reputation = ReputationManager(self.state)
+        self.engine = CombatEngine(self.skills, self.boons, self.mounts)
+        self.quest_mgr = QuestManager(self.state, self.reputation, self.mounts, self.boons)
         print('Game loaded.')
 
     # ----- Inventory -----
