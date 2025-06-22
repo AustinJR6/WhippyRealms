@@ -8,6 +8,7 @@ using System.Collections.Generic;
 public class ZoneManager : MonoBehaviour
 {
     public Text logText;
+    public LogManager logManager;
     private PlayerState player;
     private Dictionary<string, ZoneEntry> zones = new Dictionary<string, ZoneEntry>();
 
@@ -39,6 +40,12 @@ public class ZoneManager : MonoBehaviour
 
     private void Append(string msg)
     {
+        if (logManager != null)
+        {
+            logManager.Log(msg);
+            return;
+        }
+
         if (logText != null)
             logText.text += msg + "\n";
         else
