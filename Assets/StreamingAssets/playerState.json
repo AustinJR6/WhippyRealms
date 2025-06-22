@@ -3,11 +3,28 @@
   "class": "Bloomward Druid",
   "level": 1,
   "xp": 0,
-  "stats": {"health": 25, "attack": 4, "magic": 3, "armor": 0},
-  "inventory": {"gold": 0, "items": []},
-  "equipped": {"weapon": null, "armor": null},
-  "skills": ["Melee Strike", "Root Snare", "Healing Pulse"],
+  "stats": {
+    "health": 25,
+    "attack": 4,
+    "magic": 3,
+    "armor": 0
+  },
+  "inventory": {
+    "gold": 0,
+    "items": []
+  },
+  "equipped": {
+    "weapon": null,
+    "armor": null
+  },
+  "skills": [
+    "Melee Strike",
+    "Root Snare",
+    "Healing Pulse"
+  ],
   "zone": "Thornroot Paths",
   "activeQuests": [],
-  "completedQuests": []
+  "completedQuests": [],
+  "activeEffects": [],
+  "cooldowns": {}
 }
