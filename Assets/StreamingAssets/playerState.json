@@ -33,5 +33,11 @@
   "unlockedPerks": [],
   "boonUses": {},
   "craftingXP": 0,
-  "craftingLevel": 1
+  "craftingLevel": 1,
+  "availableTrials": [],
+  "completedTrials": [],
+  "activeTrial": null,
+  "activeDungeon": null,
+  "dungeonHistory": [],
+  "encounterHistory": []
 }

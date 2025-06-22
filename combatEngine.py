@@ -43,6 +43,8 @@ class CombatEngine:
     def combat(self, player_data, enemy_data, choose_skill_fn=None):
         player = Combatant(player_data, self.skills_db)
         enemy = Combatant(enemy_data, self.skills_db)
+        phases = enemy_data.get("bossPhases", [])
+        phase_index = 0
         log = []
         turn = 0
         while player.hp > 0 and enemy.hp > 0:
@@ -77,6 +79,14 @@ class CombatEngine:
                 log.append(f"{player.name} attacks for {dmg} dmg")
             if enemy.hp <= 0:
                 break
+            if phase_index < len(phases) and enemy.hp <= phases[phase_index].get("threshold", 0):
+                msg = phases[phase_index].get("dialogue")
+                if msg:
+                    log.append(msg)
+                phase_skill = phases[phase_index].get("addSkill")
+                if phase_skill and phase_skill not in enemy.skills:
+                    enemy.skills.append(phase_skill)
+                phase_index += 1
             # enemy turn (random)
             tick_cooldowns(player)
             tick_cooldowns(enemy)

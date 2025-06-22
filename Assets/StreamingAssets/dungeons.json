@@ -1,0 +1,11 @@
+[
+  {
+    "id": "lantern_sepulcher",
+    "region": "Vokaria",
+    "levelRange": "10–15",
+    "enemyTypes": ["Soulwraith", "Gravecrawler"],
+    "boss": "Warden of the Final Flame",
+    "lootTable": ["soul_ink", "veil_dye", "obsidian_core"],
+    "isRepeatable": true
+  }
+]

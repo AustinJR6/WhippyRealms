@@ -27,6 +27,7 @@ class QuestManager:
         self.mount_mgr = mount_mgr
         self.boon_mgr = boon_mgr
         self.quests_db = {q['id']: q for q in _load_json('quests.json', [])}
+        self.trials_db = {t['id']: t for t in _load_json('divineTrials.json', [])}
 
     # ---- Quest Acquisition ----
     def accept_quest(self, quest_id):
@@ -70,6 +71,11 @@ class QuestManager:
             self.boon_mgr.activate(boon)
         self.state['completedQuests'].append(quest)
         self.state['activeQuests'].remove(quest)
+        for trial in self.trials_db.values():
+            req = trial.get('requirements', {})
+            if req.get('quest') == quest.get('id'):
+                self.state.setdefault('availableTrials', []).append(trial['id'])
+                print(f"Divine trial unlocked: {trial['id']}")
 
     # ---- Dev Helpers ----
     def quest_log(self):

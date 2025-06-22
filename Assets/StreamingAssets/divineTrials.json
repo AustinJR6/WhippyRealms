@@ -1,0 +1,17 @@
+[
+  {
+    "id": "trial_of_thorns",
+    "god": "Myrielle",
+    "location": "Sylvan Spiral",
+    "requirements": {
+      "reputation": { "Verdancia": 30 },
+      "quest": "cleanse_thornroot"
+    },
+    "encounter": ["Sporelord", "Thornshade Warden"],
+    "reward": {
+      "boon": "verdant_resurrection",
+      "legendaryItem": "heartwood_staff",
+      "craftingXP": 250
+    }
+  }
+]
