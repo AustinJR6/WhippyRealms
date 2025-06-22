@@ -1,0 +1,31 @@
+{
+  "npcs": [
+    {
+      "id": "elder_treovar",
+      "name": "Elder Treovar",
+      "location": "Thornroot Paths",
+      "dialogueRoot": "npc_rootseer_intro",
+      "reputationRequirement": { "Verdancia": 0 },
+      "isAI": false,
+      "systemPrompt": ""
+    },
+    {
+      "id": "rootmage_selene",
+      "name": "Rootmage Selene",
+      "location": "Rootmaze Depths",
+      "dialogueRoot": "rootmage_intro",
+      "reputationRequirement": { "Verdancia": 10 },
+      "isAI": false,
+      "systemPrompt": ""
+    },
+    {
+      "id": "lysara",
+      "name": "Lysara",
+      "location": "Dreamer's Nook",
+      "dialogueRoot": "",
+      "reputationRequirement": {},
+      "isAI": true,
+      "systemPrompt": "You are a mystic companion named Lysara, who offers cryptic guidance and poetic insight."
+    }
+  ]
+}

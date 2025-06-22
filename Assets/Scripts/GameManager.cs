@@ -9,6 +9,8 @@ public class GameManager : MonoBehaviour
     public CombatManager combatManager;
     public ZoneManager zoneManager;
     public InventoryManager inventoryManager;
+    public NPCManager npcManager;
+    public AICompanion aiCompanion;
 
     // Loaded data
     public PlayerState playerState;
@@ -30,6 +32,12 @@ public class GameManager : MonoBehaviour
             dialogueManager.Initialize(dialogueDb);
         if (zoneManager != null)
             zoneManager.Initialize(zoneDb, playerState);
+        if (npcManager != null)
+        {
+            npcManager.aiCompanion = aiCompanion;
+            npcManager.dialogueManager = dialogueManager;
+            npcManager.LoadNPCs();
+        }
     }
 }
 

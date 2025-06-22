@@ -1,5 +1,6 @@
 using UnityEngine;
 using UnityEngine.UI;
+using System.Collections.Generic;
 
 /// <summary>
 /// Parses player commands from an InputField and routes them to systems.
@@ -34,8 +35,21 @@ public class InputHandler : MonoBehaviour
         }
         else if (command.StartsWith("talkTo"))
         {
-            var arg = ExtractArg(command);
-            gameManager.dialogueManager?.StartDialogue(arg);
+            var args = ExtractArgs(command);
+            if (args.Count > 0)
+            {
+                string npc = args[0];
+                string msg = args.Count > 1 ? args[1] : string.Empty;
+                if (gameManager.npcManager != null && gameManager.npcManager.IsAI(npc))
+                {
+                    string loc = gameManager.playerState?.zone;
+                    gameManager.npcManager.TalkTo(npc, msg, loc, string.Empty);
+                }
+                else
+                {
+                    gameManager.dialogueManager?.StartDialogue(npc);
+                }
+            }
         }
         else if (command.StartsWith("useSkill"))
         {
@@ -64,5 +78,21 @@ public class InputHandler : MonoBehaviour
         if (start >= 0 && end > start)
             return cmd.Substring(start + 1, end - start - 1);
         return string.Empty;
+    }
+
+    private List<string> ExtractArgs(string cmd)
+    {
+        var args = new List<string>();
+        int idx = 0;
+        while (idx < cmd.Length)
+        {
+            int start = cmd.IndexOf('"', idx);
+            if (start < 0) break;
+            int end = cmd.IndexOf('"', start + 1);
+            if (end < 0) break;
+            args.Add(cmd.Substring(start + 1, end - start - 1));
+            idx = end + 1;
+        }
+        return args;
     }
 }
