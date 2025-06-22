@@ -1,18 +1,32 @@
-{
-  "quests": [
-    {
-      "name": "Cleanse the Thornroot Grove",
-      "objectives": [
-        {"type": "kill", "target": "Sporeling", "count": 3}
-      ],
-      "rewards": ["Spore Dust", "XP:100"]
+[
+  {
+    "id": "quest_thornroot_001",
+    "name": "Cleanse the Thornroot Grove",
+    "description": "Defeat 3 Thornhoppers lurking near the sacred grove.",
+    "objectives": {
+      "kill": { "enemy": "Thornhopper", "count": 3 }
     },
-    {
-      "name": "Cull the Thornhoppers",
-      "objectives": [
-        {"type": "kill", "target": "Thornhopper", "count": 5}
-      ],
-      "rewards": ["Thorn Shell", "XP:80"]
-    }
-  ]
-}
+    "rewards": {
+      "xp": 100,
+      "items": ["healing_potion"],
+      "reputation": { "Verdancia": 10 }
+    },
+    "prerequisites": [],
+    "repeatable": false
+  },
+  {
+    "id": "quest_thornroot_002",
+    "name": "Cull the Thornhoppers",
+    "description": "Eliminate 5 Thornhoppers threatening the paths.",
+    "objectives": {
+      "kill": { "enemy": "Thornhopper", "count": 5 }
+    },
+    "rewards": {
+      "xp": 80,
+      "items": [],
+      "reputation": { "Verdancia": 5 }
+    },
+    "prerequisites": [],
+    "repeatable": false
+  }
+]
