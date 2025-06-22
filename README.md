@@ -33,6 +33,10 @@ Some AI integrations can be prototyped with Python. Install dependencies using:
 pip install -r requirements.txt
 ```
 
+Run `python cli_game.py` to try a lightweight text prototype that supports zone
+navigation, combat, quests and basic dialogue. It uses the JSON files under
+`Assets/StreamingAssets` for data and saves progress to `playerState.json`.
+
 ## Vision for Future Development
 
 This repository serves as the foundation for a much larger world. Future updates will include:
