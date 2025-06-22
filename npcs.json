@@ -1,0 +1,16 @@
+[
+  {
+    "id": "elder_treovar",
+    "name": "Elder Treovar",
+    "location": "Thornroot Paths",
+    "dialogueRoot": "npc_rootseer_intro",
+    "reputationRequirement": { "Verdancia": 0 }
+  },
+  {
+    "id": "rootmage_selene",
+    "name": "Rootmage Selene",
+    "location": "Rootmaze Depths",
+    "dialogueRoot": "rootmage_intro",
+    "reputationRequirement": { "Verdancia": 10 }
+  }
+]

@@ -13,6 +13,15 @@
       "enemies": [],
       "quests": [],
       "connected_zones": ["Thornroot Paths"]
+    },
+    {
+      "name": "Rootmaze Depths",
+      "levelRange": [2, 4],
+      "enemies": ["Sporeling"],
+      "quests": [],
+      "connected_zones": ["Thornroot Paths"],
+      "unlockReputation": { "Verdancia": 10 },
+      "flavor": "Twisting roots surround you, echoing with ancient whispers."
     }
   ]
 }
