@@ -6,6 +6,13 @@
         {"type": "kill", "target": "Sporeling", "count": 3}
       ],
       "rewards": ["Spore Dust", "XP:100"]
+    },
+    {
+      "name": "Cull the Thornhoppers",
+      "objectives": [
+        {"type": "kill", "target": "Thornhopper", "count": 5}
+      ],
+      "rewards": ["Thorn Shell", "XP:80"]
     }
   ]
 }

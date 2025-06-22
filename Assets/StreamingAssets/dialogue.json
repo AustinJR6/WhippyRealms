@@ -1,0 +1,27 @@
+{
+  "dialogues": [
+    {
+      "npc": "Old Hermit",
+      "nodes": {
+        "start": {
+          "text": "Greetings traveler. Do you seek wisdom or rest?",
+          "options": {"Wisdom": "wisdom", "Rest": "rest"}
+        },
+        "wisdom": {
+          "text": "The forest hides secrets in every root.",
+          "options": {"Thanks": "end"},
+          "event": "gain_item:Spore Dust"
+        },
+        "rest": {
+          "text": "Take this herb to soothe your wounds.",
+          "options": {"Thanks": "end"},
+          "event": "gain_item:Healing Herb"
+        },
+        "end": {
+          "text": "Safe travels.",
+          "options": {}
+        }
+      }
+    }
+  ]
+}

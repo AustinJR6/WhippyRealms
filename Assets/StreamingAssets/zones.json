@@ -4,7 +4,15 @@
       "name": "Thornroot Paths",
       "levelRange": [1, 3],
       "enemies": ["Thornhopper", "Sporeling"],
-      "quests": ["Cleanse the Thornroot Grove"]
+      "quests": ["Cleanse the Thornroot Grove", "Cull the Thornhoppers"],
+      "connected_zones": ["Myrrhfen Village"]
+    },
+    {
+      "name": "Myrrhfen Village",
+      "levelRange": [1, 2],
+      "enemies": [],
+      "quests": [],
+      "connected_zones": ["Thornroot Paths"]
     }
   ]
 }
