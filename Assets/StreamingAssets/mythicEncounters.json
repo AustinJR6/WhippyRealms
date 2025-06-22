@@ -1,0 +1,10 @@
+[
+  {
+    "id": "moondrinker_arrival",
+    "trigger": "duringEclipse",
+    "location": "Crescent Hollow",
+    "effect": "memoryWipe",
+    "combat": true,
+    "reward": "moonwoven_crown"
+  }
+]

@@ -5,7 +5,12 @@ class ZoneManager {
     const raw = JSON.parse(fs.readFileSync(jsonPath, 'utf8'));
     this.zones = {};
     for (const z of raw.zones) {
-      this.zones[z.name] = z;
+      this.zones[z.name] = {
+        trials: [],
+        dungeons: [],
+        encounters: [],
+        ...z
+      };
     }
     this.state = state;
     if (!this.state.unlockedZones) {
