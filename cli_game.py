@@ -2,6 +2,7 @@ import json
 import os
 import random
 from pathlib import Path
+from combatEngine import CombatEngine
 
 DATA_DIR = Path('Assets/StreamingAssets')
 
@@ -29,6 +30,7 @@ class Game:
         self.state_path = DATA_DIR / 'playerState.json'
         self.state = load_json('playerState.json')
         self.stats = self.state['stats']
+        self.engine = CombatEngine(self.skills)
 
     # ----- Save/Load -----
     def save(self):
@@ -137,33 +139,25 @@ class Game:
             return
         enemy_name = random.choice(zone['enemies'])
         enemy = json.loads(json.dumps(self.creatures[enemy_name]))
-        player_hp = self.stats['health']
-        enemy_hp = enemy['stats']['health']
         print(f'Encountered {enemy_name}!')
-        log = []
-        while player_hp > 0 and enemy_hp > 0:
-            print(f"You: {player_hp} HP  {enemy_name}: {enemy_hp} HP")
-            for i, s in enumerate(self.state['skills'], 1):
+        def choose_skill(player, foe):
+            print(f"You: {player.hp} HP  {foe.name}: {foe.hp} HP")
+            for i, s in enumerate(player.skills, 1):
                 print(f"{i}. {s}")
             idx = int(input('Choose skill: ')) - 1
-            skill = self.skills[self.state['skills'][idx]]
-            damage = skill.get('damage', 0) + self.stats['attack']
-            enemy_hp -= damage
-            log.append(f"You use {skill['name']} for {damage} dmg")
-            if enemy_hp <= 0:
-                break
-            # enemy attack
-            eskill_name = random.choice(enemy['skills'])
-            eskill = self.skills[eskill_name]
-            edamage = eskill.get('damage', 0) + enemy['stats']['attack']
-            player_hp -= edamage
-            log.append(f"{enemy_name} uses {eskill_name} for {edamage} dmg")
-        if player_hp <= 0:
+            if 0 <= idx < len(player.skills):
+                return player.skills[idx]
+            return player.skills[0]
+
+        result, log, player_obj, enemy_obj = self.engine.combat(self.state, enemy, choose_skill)
+        self.stats['health'] = player_obj.hp
+        self.state['activeEffects'] = player_obj.active_effects
+        self.state['cooldowns'] = player_obj.cooldowns
+        if not result:
             print('You were defeated...')
             self.stats['health'] = max(1, self.stats['health'] // 2)
         else:
             print(f'You defeated {enemy_name}!')
-            self.stats['health'] = player_hp
             self.grant_loot(enemy_name)
             self.update_quests(enemy_name)
         for l in log:

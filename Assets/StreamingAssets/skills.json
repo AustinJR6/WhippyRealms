@@ -1,9 +1,65 @@
 {
   "skills": [
-    {"name": "Melee Strike", "damage": 5, "type": "Physical"},
-    {"name": "Root Snare", "damage": 3, "type": "Nature", "effect": "Root"},
-    {"name": "Healing Pulse", "heal": 5, "type": "Nature"},
-    {"name": "Sun Slash", "damage": 6, "type": "Fire"},
-    {"name": "Shadow Jab", "damage": 4, "type": "Void"}
+    {
+      "name": "Melee Strike",
+      "type": "active",
+      "class": "Any",
+      "element": "Physical",
+      "cost": 0,
+      "cooldown": 0,
+      "effect": {"damage": 5},
+      "target": "enemy"
+    },
+    {
+      "name": "Root Snare",
+      "type": "active",
+      "class": "Bloomward Druid",
+      "element": "Nature",
+      "cost": 3,
+      "cooldown": 2,
+      "effect": {"damage": 3, "status": "rooted", "duration": 2},
+      "target": "enemy"
+    },
+    {
+      "name": "Healing Pulse",
+      "type": "active",
+      "class": "Bloomward Druid",
+      "element": "Nature",
+      "cost": 4,
+      "cooldown": 3,
+      "effect": {"heal": 5},
+      "target": "self"
+    },
+    {
+      "name": "Sun Slash",
+      "type": "active",
+      "class": "Sunblade Warrior",
+      "element": "Fire",
+      "cost": 5,
+      "cooldown": 1,
+      "effect": {"damage": 6},
+      "target": "enemy"
+    },
+    {
+      "name": "Shadow Jab",
+      "type": "active",
+      "class": "Nightstalker",
+      "element": "Void",
+      "cost": 4,
+      "cooldown": 1,
+      "effect": {"damage": 4},
+      "target": "enemy"
+    },
+    {
+      "name": "Nature's Resilience",
+      "type": "passive",
+      "class": "Bloomward Druid",
+      "element": "Nature",
+      "cost": 0,
+      "cooldown": 0,
+      "effect": {"resist": {"Nature": 10}},
+      "target": "self",
+      "trigger": "on-combat-start"
+    }
   ]
 }

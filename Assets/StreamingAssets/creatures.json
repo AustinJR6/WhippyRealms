@@ -1,6 +1,33 @@
 {
   "creatures": [
-    {"name": "Thornhopper", "level": 1, "stats": {"health": 8, "attack": 2}, "skills": ["Melee Strike"]},
-    {"name": "Sporeling", "level": 2, "stats": {"health": 12, "attack": 3}, "skills": ["Melee Strike", "Root Snare"]}
+    {
+      "name": "Thornhopper",
+      "level": 1,
+      "stats": {
+        "health": 8,
+        "attack": 2
+      },
+      "skills": [
+        "Melee Strike"
+      ],
+      "activeEffects": [],
+      "cooldowns": {},
+      "element": "Physical"
+    },
+    {
+      "name": "Sporeling",
+      "level": 2,
+      "stats": {
+        "health": 12,
+        "attack": 3
+      },
+      "skills": [
+        "Melee Strike",
+        "Root Snare"
+      ],
+      "activeEffects": [],
+      "cooldowns": {},
+      "element": "Physical"
+    }
   ]
 }
