@@ -16,6 +16,16 @@ public class AICompanion : MonoBehaviour
 
     private const int MaxHistory = 10;
     private readonly List<string> history = new List<string>();
+    private string apiKey;
+
+    private void Start()
+    {
+        apiKey = ConfigLoader.LoadOpenAIKey();
+        if (string.IsNullOrEmpty(apiKey))
+        {
+            Debug.LogWarning("OpenAI API key missing; AI features disabled.");
+        }
+    }
 
     /// <summary>
     /// Send player input and context to the OpenAI API.
@@ -27,10 +37,9 @@ public class AICompanion : MonoBehaviour
 
     private IEnumerator QueryOpenAI(string input, string location, string quest)
     {
-        string apiKey = System.Environment.GetEnvironmentVariable("OPENAI_API_KEY");
         if (string.IsNullOrEmpty(apiKey))
         {
-            Debug.LogError("OPENAI_API_KEY not set");
+            Debug.LogError("OpenAI API key not set");
             yield break;
         }
 
