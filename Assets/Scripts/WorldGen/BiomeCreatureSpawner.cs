@@ -15,15 +15,21 @@ public class BiomeCreatureSpawner : MonoBehaviour
 
     public float spawnRadius = 20f;
     public float spawnInterval = 10f;
+    public int maxSpawned = 5;
+    public float respawnDelay = 5f;
+    public List<Transform> wonderPoints = new List<Transform>();
+
     private float timer;
+    private readonly List<GameObject> spawned = new List<GameObject>();
 
     private void Update()
     {
         if (region == null)
             return;
 
+        spawned.RemoveAll(obj => obj == null);
         timer += Time.deltaTime;
-        if (timer >= spawnInterval)
+        if (timer >= spawnInterval && spawned.Count < maxSpawned)
         {
             SpawnCreature();
             timer = 0f;
@@ -36,9 +42,9 @@ public class BiomeCreatureSpawner : MonoBehaviour
         if (prefab == null)
             return;
 
-        Vector3 pos = transform.position + new Vector3(Random.Range(-spawnRadius, spawnRadius), 0f,
-                                                        Random.Range(-spawnRadius, spawnRadius));
-        Instantiate(prefab, pos, Quaternion.identity, transform);
+        Vector3 pos = GetSpawnPosition(prefab);
+        var obj = Instantiate(prefab, pos, Quaternion.identity, transform);
+        spawned.Add(obj);
     }
 
     private GameObject ChooseCreature()
@@ -53,5 +59,20 @@ public class BiomeCreatureSpawner : MonoBehaviour
             return commonCreatures[Random.Range(0, commonCreatures.Count)];
 
         return null;
+    }
+
+    private Vector3 GetSpawnPosition(GameObject prefab)
+    {
+        Vector3 basePos = transform.position;
+        if (prefab != null && wonderPoints.Count > 0 &&
+            (eliteCreatures.Contains(prefab) || mythicCreatures.Contains(prefab)))
+        {
+            var anchor = wonderPoints[Random.Range(0, wonderPoints.Count)];
+            basePos = anchor.position;
+        }
+
+        basePos += new Vector3(Random.Range(-spawnRadius, spawnRadius), 0f,
+                               Random.Range(-spawnRadius, spawnRadius));
+        return basePos;
     }
 }
