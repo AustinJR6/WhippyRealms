@@ -5,42 +5,78 @@
       "description": "Golden fields, temples, and capital of divine influence.",
       "deity": "Solinar",
       "minLevel": 1,
-      "maxLevel": 10
+      "maxLevel": 10,
+      "elevationType": "plains",
+      "vegetationType": "farmland",
+      "climateType": "temperate",
+      "terrainFeatures": ["rivers", "farmlands"],
+      "tag": "low",
+      "levelZone": 5
     },
     {
       "name": "Verdancia",
       "description": "Ancient forestland filled with fae ruins and druidic culture.",
       "deity": "Myrielle",
       "minLevel": 1,
-      "maxLevel": 10
+      "maxLevel": 10,
+      "elevationType": "forest",
+      "vegetationType": "dense",
+      "climateType": "humid",
+      "terrainFeatures": ["ancient trees", "fae ruins"],
+      "tag": "low",
+      "levelZone": 5
     },
     {
       "name": "Durndara",
       "description": "Mountainous realm of dwarven forges and volcanic terrain.",
       "deity": "Durak Thorne",
       "minLevel": 10,
-      "maxLevel": 20
+      "maxLevel": 20,
+      "elevationType": "mountains",
+      "vegetationType": "sparse",
+      "climateType": "cold",
+      "terrainFeatures": ["volcano", "caves"],
+      "tag": "mid",
+      "levelZone": 15
     },
     {
       "name": "Selenora",
       "description": "Moonlit mystic region with floating forests and astral temples.",
       "deity": "Velalune",
       "minLevel": 10,
-      "maxLevel": 20
+      "maxLevel": 20,
+      "elevationType": "floating",
+      "vegetationType": "mystic",
+      "climateType": "cool",
+      "terrainFeatures": ["moon temples", "astral trees"],
+      "tag": "mid",
+      "levelZone": 15
     },
     {
       "name": "Tharnor",
       "description": "War-torn deserts and necrotic battlefields swept by sandstorms.",
       "deity": "Vakhor",
       "minLevel": 20,
-      "maxLevel": 30
+      "maxLevel": 30,
+      "elevationType": "desert",
+      "vegetationType": "barren",
+      "climateType": "arid",
+      "terrainFeatures": ["sandstorm", "ruins"],
+      "tag": "high",
+      "levelZone": 25
     },
     {
       "name": "Vokaria",
       "description": "Ocean-drowned ruins ruled by storm altars and serpent clans.",
       "deity": "Thal’shara",
       "minLevel": 20,
-      "maxLevel": 30
+      "maxLevel": 30,
+      "elevationType": "coastal",
+      "vegetationType": "marsh",
+      "climateType": "tropical",
+      "terrainFeatures": ["flooded ruins", "storm altars"],
+      "tag": "high",
+      "levelZone": 25
     }
   ]
 }
