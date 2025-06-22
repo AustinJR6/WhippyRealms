@@ -1,0 +1,14 @@
+{
+  "zones": [
+    {
+      "name": "Thornroot Paths",
+      "level": 1,
+      "connectsTo": ["Myrrhfen Village"]
+    },
+    {
+      "name": "Myrrhfen Village",
+      "level": 1,
+      "connectsTo": ["Thornroot Paths"]
+    }
+  ]
+}
