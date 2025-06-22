@@ -24,4 +24,35 @@
       }
     }
   ]
+  ,
+  "dialogueTrees": [
+    {
+      "id": "npc_rootseer_intro",
+      "speaker": "Elder Treovar",
+      "lines": [
+        {
+          "text": "The grove trembles, young one. Will you aid us?",
+          "choices": [
+            { "text": "Yes, what must be done?", "next": "quest_offer_thornroot" },
+            { "text": "Not now.", "next": "end" }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "quest_offer_thornroot",
+      "speaker": "Elder Treovar",
+      "lines": [
+        { "text": "Hunt the Thornhoppers, cleanse their presence. Return when it is done." }
+      ],
+      "quest": "quest_thornroot_001"
+    },
+    {
+      "id": "rootmage_intro",
+      "speaker": "Rootmage Selene",
+      "lines": [
+        { "text": "You have proven yourself, verdant one. The depths welcome you." }
+      ]
+    }
+  ]
 }
