@@ -31,6 +31,11 @@ public class DialogueManager : MonoBehaviour
         }
     }
 
+    public void DisplayLine(string speaker, string line)
+    {
+        Append($"{speaker}: {line}");
+    }
+
     private void Append(string msg)
     {
         if (logText != null)
