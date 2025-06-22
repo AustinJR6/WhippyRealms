@@ -17,6 +17,10 @@ WhippyRealms is a fantasy RPG project built in Unity. It aims to create a dynami
 3. The main scripts live in `Assets/Scripts`. Attach them to GameObjects as needed.
 4. To run the sample scene, create a new scene and add a `GameManager` with `SceneLoader` and `SaveSystem` components.
 
+## Region Data
+
+World regions are defined in `Assets/StreamingAssets/regions.json`. The new `RegionManager` script loads this file at runtime so you can expand the map without modifying code. Each entry describes a region name, controlling deity and recommended level range.
+
 ## Python Tools
 
 Some AI integrations can be prototyped with Python. Install dependencies using:
