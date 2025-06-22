@@ -70,6 +70,21 @@ public class InputHandler : MonoBehaviour
         {
             gameManager.zoneManager?.ShowStats();
         }
+        else if (command == "help" || command == "commands" || command == "?")
+        {
+            string helpText =
+                "Available Commands:\n" +
+                "- talkTo(\"NPC\")\n" +
+                "- travelTo(\"Zone\")\n" +
+                "- attack(\"Enemy\")\n" +
+                "- useSkill(\"SkillName\")\n" +
+                "- useItem(\"ItemName\")\n" +
+                "- openInventory()\n" +
+                "- openQuests()\n" +
+                "- showStats()\n" +
+                "- help()";
+            gameManager.logManager?.Log(helpText);
+        }
 
         uiManager?.UpdateHUD(gameManager.playerState);
     }

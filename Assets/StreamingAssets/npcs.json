@@ -25,7 +25,8 @@
       "dialogueRoot": "",
       "reputationRequirement": {},
       "isAI": true,
-      "systemPrompt": "You are a mystic companion named Lysara, who offers cryptic guidance and poetic insight."
+      "systemPrompt": "",
+      "personality": "You are Lysara, a Moonveil priestess. You speak in riddles and dreams. You remember the player from a forgotten past."
     }
   ]
 }

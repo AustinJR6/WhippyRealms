@@ -25,6 +25,19 @@ public class GameManager : MonoBehaviour
     {
         // Load JSON data from Resources/Data using JsonLoader
         playerState = JsonLoader.LoadJson<PlayerState>("playerState.json");
+        if (playerState == null)
+        {
+            playerState = new PlayerState
+            {
+                level = 1,
+                xp = 0,
+                hp = 25,
+                zone = "Thornroot Paths",
+                inventory = new string[] { "Cleanse the Grove" }
+            };
+            logManager?.Log("New character created.");
+            Debug.Log("New character created.");
+        }
         skillDb = JsonLoader.LoadJson<SkillDatabase>("skills.json");
         questDb = JsonLoader.LoadJson<QuestDatabase>("quests.json");
         dialogueDb = JsonLoader.LoadJson<DialogueDatabase>("dialogue.json");
