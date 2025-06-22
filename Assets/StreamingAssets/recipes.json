@@ -1,0 +1,9 @@
+{
+  "recipes": [
+    {
+      "name": "Healing Salve",
+      "materials": {"Spore Dust": 2, "Herb": 1},
+      "result": {"item": "Healing Salve", "quantity": 1}
+    }
+  ]
+}

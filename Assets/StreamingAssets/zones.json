@@ -1,0 +1,10 @@
+{
+  "zones": [
+    {
+      "name": "Thornroot Paths",
+      "levelRange": [1, 3],
+      "enemies": ["Thornhopper", "Sporeling"],
+      "quests": ["Cleanse the Thornroot Grove"]
+    }
+  ]
+}

@@ -1,0 +1,9 @@
+{
+  "skills": [
+    {"name": "Melee Strike", "damage": 5, "type": "Physical"},
+    {"name": "Root Snare", "damage": 3, "type": "Nature", "effect": "Root"},
+    {"name": "Healing Pulse", "heal": 5, "type": "Nature"},
+    {"name": "Sun Slash", "damage": 6, "type": "Fire"},
+    {"name": "Shadow Jab", "damage": 4, "type": "Void"}
+  ]
+}

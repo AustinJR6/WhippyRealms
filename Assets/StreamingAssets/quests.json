@@ -1,0 +1,11 @@
+{
+  "quests": [
+    {
+      "name": "Cleanse the Thornroot Grove",
+      "objectives": [
+        {"type": "kill", "target": "Sporeling", "count": 3}
+      ],
+      "rewards": ["Spore Dust", "XP:100"]
+    }
+  ]
+}

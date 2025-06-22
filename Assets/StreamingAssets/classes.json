@@ -1,0 +1,7 @@
+{
+  "classes": [
+    {"name": "Bloomward Druid", "stats": {"health": 5, "magic": 2}, "skills": ["Melee Strike", "Root Snare", "Healing Pulse"]},
+    {"name": "Sunblade", "stats": {"health": 3, "attack": 2}, "skills": ["Melee Strike", "Sun Slash"]},
+    {"name": "Veilstriker", "stats": {"health": 2, "attack": 1, "magic": 1}, "skills": ["Melee Strike", "Shadow Jab"]}
+  ]
+}
