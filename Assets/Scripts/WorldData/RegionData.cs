@@ -12,4 +12,10 @@ public class RegionData
     public string deity;
     public int minLevel;
     public int maxLevel;
+    public string elevationType;
+    public string vegetationType;
+    public string climateType;
+    public string[] terrainFeatures;
+    public string tag;
+    public int levelZone;
 }
