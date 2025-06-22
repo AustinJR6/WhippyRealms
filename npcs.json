@@ -12,5 +12,14 @@
     "location": "Rootmaze Depths",
     "dialogueRoot": "rootmage_intro",
     "reputationRequirement": { "Verdancia": 10 }
+  },
+  {
+    "id": "lysara",
+    "name": "Lysara",
+    "location": "Dreamer's Nook",
+    "dialogueRoot": "",
+    "reputationRequirement": {},
+    "isAI": true,
+    "personality": "You are Lysara, a Moonveil priestess. You speak in riddles and dreams. You remember the player from a forgotten past."
   }
 ]

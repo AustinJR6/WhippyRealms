@@ -11,10 +11,10 @@ public class AICompanion : MonoBehaviour
 {
     public string npcId = "NPC";
     [TextArea]
-    public string systemPrompt = "You are a helpful NPC.";
+    public string systemPrompt = "";
     public DialogueManager dialogueManager;
 
-    private const int MaxHistory = 10;
+    private const int MaxHistory = 12;
     private readonly List<string> history = new List<string>();
     private string apiKey;
 
@@ -39,13 +39,17 @@ public class AICompanion : MonoBehaviour
     {
         if (string.IsNullOrEmpty(apiKey))
         {
+            dialogueManager?.DisplayLine(npcId, "The companion goes silent. Perhaps the veil is too thick today.");
             Debug.LogError("OpenAI API key not set");
             yield break;
         }
 
+        string persona = string.IsNullOrEmpty(systemPrompt)
+            ? "You are a helpful companion NPC in a fantasy world."
+            : systemPrompt;
         var messages = new List<Message>
         {
-            new Message { role = "system", content = systemPrompt }
+            new Message { role = "system", content = persona }
         };
 
         if (!string.IsNullOrEmpty(location) || !string.IsNullOrEmpty(quest))
@@ -82,6 +86,7 @@ public class AICompanion : MonoBehaviour
             if (req.result != UnityWebRequest.Result.Success)
             {
                 Debug.LogError("OpenAI request failed: " + req.error);
+                dialogueManager?.DisplayLine(npcId, "The companion goes silent. Perhaps the veil is too thick today.");
                 yield break;
             }
 
@@ -92,6 +97,10 @@ public class AICompanion : MonoBehaviour
                 history.Add("NPC:" + content);
                 TrimHistory();
                 dialogueManager?.DisplayLine(npcId, content);
+            }
+            else
+            {
+                dialogueManager?.DisplayLine(npcId, "The companion goes silent. Perhaps the veil is too thick today.");
             }
         }
     }

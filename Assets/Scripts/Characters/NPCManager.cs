@@ -45,7 +45,11 @@ public class NPCManager : MonoBehaviour
 
     public string GetSystemPrompt(string id)
     {
-        return lookup.TryGetValue(id, out var npc) ? npc.systemPrompt : string.Empty;
+        if (lookup.TryGetValue(id, out var npc))
+        {
+            return !string.IsNullOrEmpty(npc.personality) ? npc.personality : npc.systemPrompt;
+        }
+        return string.Empty;
     }
 
     public string GetName(string id)
@@ -63,7 +67,7 @@ public class NPCManager : MonoBehaviour
 
         if (npc.isAI && aiCompanion != null)
         {
-            aiCompanion.systemPrompt = npc.systemPrompt;
+            aiCompanion.systemPrompt = !string.IsNullOrEmpty(npc.personality) ? npc.personality : npc.systemPrompt;
             aiCompanion.npcId = npc.name;
             aiCompanion.dialogueManager = dialogueManager;
             aiCompanion.HandlePlayerInput(playerInput, location, quest);
@@ -84,6 +88,8 @@ public class NPCManager : MonoBehaviour
         public bool isAI;
         [TextArea]
         public string systemPrompt;
+        [TextArea]
+        public string personality;
     }
 
     [System.Serializable]
